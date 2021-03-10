@@ -1,4 +1,4 @@
-default_config:
+{ default_config:
 
 http:
   ssl_certificate: /ssl/fullchain.pem
@@ -276,3 +276,4 @@ media_player:
 #      track_new_devices: true
 #    hosts:
 #      kellaniphone: 192.168.185.20
+}
