@@ -76,15 +76,15 @@ logger:
 recorder:
   db_url: !secret db_url
 
-alarm_control_panel:
-  - platform: mqtt
-    name: "House Paradox"
-    state_topic: “paradox/alarm/state/1”
-    command_topic: “paradox/alarm/cmnd/1”
-    qos: 1
-    availability_topic: "paradox/ctrl/state"
-    payload_available: "Connected"
-    payload_not_available: "Disconnected"
+# alarm_control_panel:
+#   - platform: mqtt
+#     name: "House Paradox"
+#     state_topic: “paradox/alarm/state/1”
+#     command_topic: “paradox/alarm/cmnd/1”
+#     qos: 1
+#     availability_topic: "paradox/ctrl/state"
+#     payload_available: "Connected"
+#     payload_not_available: "Disconnected"
 # homekit:
 #   - filter:
 #       include_domains:
@@ -292,11 +292,4 @@ media_player:
     mac: !secret samsung_tv_mac
     app_list: '{"Netflix": "11101200001", "YouTube": "111299001912", "Plex": "3201512006963", "DSTv": "3201804016109"}'
     show_logos: "white-color"
-#device_tracker:
-#  - platform: iphonedetect
-#   consider_home: 12
-#   scan_interval: 12
-#    new_device_defaults:
-#      track_new_devices: true
-#    hosts:
-#      kellaniphone: 192.168.185.20
+
