@@ -36,22 +36,6 @@ binary_sensor:
     payload_off: "OFF"
     device_class: door
 
-sensor:
-  - platform: mqtt
-    state_topic: "tele/L-Lamp/SENSOR"
-    name: "Lounge Temp"
-    unit_of_measurement: "°C"
-    value_template: "{{value_json['DHT11'].Temperature }}"
-    device_class: temperature
-    force_update: true
-
-  - platform: mqtt
-    state_topic: "tele/L-Lamp/SENSOR"
-    name: "Lounge Humidity"
-    value_template: "{{value_json['DHT11'].Humidity }}"
-    unit_of_measurement: "%"
-    device_class: humidity
-
 light:
   - platform: mqtt
     name: "Bedroom Lamp"
