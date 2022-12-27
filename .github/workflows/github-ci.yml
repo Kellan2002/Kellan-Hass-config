@@ -20,10 +20,13 @@ jobs:
       - name: Get configuration.yaml
         run: |
           config=$(cat configuration.yaml)
+          echo $config
+
       # Insert the contents of the configuration.yaml file into the README.md file
       - name: Update README.md
         run: |
           sed -i -e "/^```$/{N;s/^```\n```$/```\n$config\n```/}" README.md
+          
       # Commit and push the updated README.md file
       - name: Commit and push
         run: |
