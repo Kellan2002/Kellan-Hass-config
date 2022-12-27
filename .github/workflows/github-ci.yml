@@ -25,7 +25,11 @@ jobs:
       # Insert the contents of the configuration.yaml file into the README.md file
       - name: Update README.md
         run: |
-          sed -i -e "/^(start)$/{N;s/^(start)\n(end)$/(start)\n$config\n(end)/}" README.md
+          cat configuration.yml | sed '1i```' | sed '$a```' > temp.md
+          cat temp.md
+          cat README.md
+          cat temp.md >> README.md
+          cat README.md
 
       # Commit and push the updated README.md file
       - name: Commit & Push changes
