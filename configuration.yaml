@@ -25,34 +25,6 @@ cover:
         stop_cover:
           service: script.stop_projector_screen
 
-proxmoxve:
-  - host: 192.168.185.10
-    username: !secret pve_username
-    password: !secret pve_password
-    realm: pve
-    verify_ssl: false
-    nodes:
-      - node: proxmox-ve
-        vms:
-          - 100
-          - 101
-          - 102
-          - 103
-          - 104
-          - 105
-          - 300
-          - 301
-          - 302
-          - 303
-          - 304
-          - 305
-          - 306
-
-      - node: proxmox-pbs
-        vms:
-          - 200
-          - 201
-          - 202
 history:
   include:
     domains:
