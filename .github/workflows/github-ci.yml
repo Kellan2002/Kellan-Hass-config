@@ -5,13 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Check if the push contains the configuration.yaml file
-      - name: Check for configuration.yaml
-        run: |
-          if git diff-tree --no-commit-id --name-only -r HEAD | grep -q "configuration.yaml"; then
-            exit 0
-          else
-            exit 1
-          fi
+      # - name: Check for configuration.yaml
+      #   run: |
+      #     if git diff-tree --no-commit-id --name-only -r HEAD | grep -q "configuration.yaml"; then
+      #       exit 0
+      #     else
+      #       exit 1
+      #     fi
       # Get the contents of the configuration.yaml file
       - name: Get configuration.yaml
         run: |
