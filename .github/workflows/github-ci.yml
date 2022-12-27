@@ -17,7 +17,8 @@ jobs:
       
       - name: Copy Configuration
         run: |
-          ls
+          cat configuration.yaml | sed 's/^/```\n/' | sed 's/$/\n```/' > temp.md
+          cat temp.md
           # Extract the content between the triple backticks
           content=$(awk '/^```$/,/^```$/' README.md | grep -v '^```$')
           # Append the content of configuration.yaml to it
