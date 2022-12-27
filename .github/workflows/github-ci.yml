@@ -14,9 +14,11 @@ jobs:
     steps:
       - name: "📥  Fetching Repository Contents"
         uses: actions/checkout@main
-
+      
       - name: Copy Configuration
         run: |
+          # Print the current working directory
+          pwd
           # Extract the content between the triple backticks
           content=$(awk '/^```$/,/^```$/' README.md | grep -v '^```$')
           # Append the content of configuration.yaml to it
