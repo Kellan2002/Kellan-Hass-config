@@ -1,5 +1,6 @@
 # This is the configuration file for my [HomeAssistant](https://www.home-assistant.io/) Server. This is meant to be a backup
 
+(start)
 ```yaml
 
 default_config:
@@ -116,3 +117,4 @@ camera:
 #     app_list: '{"Netflix": "11101200001", "YouTube": "111299001912", "Plex": "3201512006963", "DSTv": "3201804016109"}'
 #     show_logos: "white-color"
 ```
+(end)
