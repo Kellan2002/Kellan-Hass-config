@@ -18,6 +18,7 @@ jobs:
       - name: Copy Configuration
         run: |
 
+          cat configuration.yml
           # Extract the content between the triple backticks
           content=$(awk '/^```$/,/^```$/' README.md | grep -v '^```$')
           # Append the content of configuration.yml to it
