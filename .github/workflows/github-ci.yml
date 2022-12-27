@@ -3,6 +3,7 @@ on: [push]
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+    
     steps:
       # Check if the push contains the configuration.yaml file
       # - name: Check for configuration.yaml
@@ -13,6 +14,9 @@ jobs:
       #       exit 1
       #     fi
       # Get the contents of the configuration.yaml file
+      - name: Check out rep[ository
+        uses: actions/checkout@v2
+        
       - name: Get configuration.yaml
         run: |
           config=$(cat configuration.yaml)
