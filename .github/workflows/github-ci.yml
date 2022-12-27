@@ -15,13 +15,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Copy Configuration
         run: |
-          cat configuration.yml | sed 's/^/```\n/' | sed 's/$/\n```/' > temp.md
-          cat temp.md >> README.md
+          content=$(awk '/^```$/,/^```$/' README.md | grep -v '^```$')
+          content="$content\n$(cat configuration.yml)"
+          sed -i "s/^```$.*$```$/```\n$content\n```/" README.md
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: modified-readme
           path: README.md
+
