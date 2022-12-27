@@ -19,6 +19,7 @@ jobs:
         run: |
           # Print the current working directory
           pwd
+          ls
           # Extract the content between the triple backticks
           content=$(awk '/^```$/,/^```$/' /home/runner/work/hassio-config/hassio-config/README.md | grep -v '^```$')
           # Append the content of configuration.yml to it
