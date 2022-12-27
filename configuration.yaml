@@ -24,19 +24,7 @@ cover:
           service: script.close_projector_screen
         stop_cover:
           service: script.stop_projector_screen
-
-history:
-  include:
-    domains:
-      - sensor
-
-frontend:
-  themes: !include_dir_merge_named themes
-logger:
-  default: warning
-  logs:
-    custom_components.adaptive_lighting: debug
-
+          
 recorder:
   db_url: !secret db_url
 
