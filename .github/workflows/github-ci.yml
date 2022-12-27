@@ -1,46 +1,34 @@
-name: Copy Configuration
+name: Dynamic README
 
 on:
   push:
     branches:
-      - master
       - main
-
+  workflow_dispatch:
 
 jobs:
-  build:
+  update_readme:
+    name: "Update Templates"
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up Git
-        uses: actions/setup-git@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: "📥  Fetching Repository Contents"
+        uses: actions/checkout@main
 
-      - name: Copy Configuration
-        run: |
-          # Print the current working directory
-          pwd
-          # Extract the content between the triple backticks
-          content=$(awk '/^```$/,/^```$/' /home/runner/work/hassio-config/hassio-config/README.md | grep -v '^```$')
-          # Append the content of configuration.yml to it
-          content="$content\n$(cat configuration.yml)"
-          # Replace the original content in README.md with the modified content
-          sed -i "s/^```$.*$```$/```\n$content\n```/" README.md
-          
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: modified-readme
-          path: README.md
+      - name: "💾  Github Repository Metadata"
+        uses: varunsridharan/action-repository-meta@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_KEY }}
 
-      - name: Commit and push changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add README.md
-          git commit -m "Update README.md with configuration.yml"
-          git push origin master
+      - name: Dynamic README ✨
+        uses: varunsridharan/action-dynamic-readme@main
+        with:
+          GLOBAL_TEMPLATE_REPOSITORY: {repository-owner}/{repository-name}
+          files: |
+            configuration.yaml
+            FILE2.md=README.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTION_KEY }}
 
 
 
