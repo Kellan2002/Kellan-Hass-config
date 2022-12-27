@@ -25,7 +25,7 @@ jobs:
       # Insert the contents of the configuration.yaml file into the README.md file
       - name: Update README.md
         run: |
-          cat $config | sed '1i```' | sed '$a```' > temp.md
+          cat $(cat configuration.yaml)| sed '1i```' | sed '$a```' > temp.md
           cat temp.md
           cat README.md
           cat temp.md >> README.md
