@@ -103,10 +103,9 @@ camera:
     name: Pool Camera
     input: !secret pool_camera
 
-
 media_player:
   - platform: samsungtv_tizen
-    host: 192.168.185.200
+    host: 10.0.0.x
     name: Lounge TV
     port: 8002
     mac: !secret samsung_tv_mac
