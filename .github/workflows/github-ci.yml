@@ -12,22 +12,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up Git
+        uses: actions/setup-git@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Copy Configuration
         run: |
           # Print the current working directory
-          
-          ls $(pwd)
+          pwd
           # Extract the content between the triple backticks
           content=$(awk '/^```$/,/^```$/' /home/runner/work/hassio-config/hassio-config/README.md | grep -v '^```$')
           # Append the content of configuration.yml to it
           content="$content\n$(cat configuration.yml)"
           # Replace the original content in README.md with the modified content
           sed -i "s/^```$.*$```$/```\n$content\n```/" README.md
+          
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
           name: modified-readme
           path: README.md
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "Update README.md with configuration.yml"
+          git push origin master
 
 
 
