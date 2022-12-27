@@ -28,24 +28,6 @@ cover:
 recorder:
   db_url: !secret db_url
 
-# alarm_control_panel:
-#   - platform: mqtt
-#     name: "House Paradox"
-#     state_topic: “paradox/alarm/state/1”
-#     command_topic: “paradox/alarm/cmnd/1”
-#     qos: 1
-#     availability_topic: "paradox/ctrl/state"
-#     payload_available: "Connected"
-#     payload_not_available: "Disconnected"
-# homekit:
-#   - filter:
-#       include_domains:
-#         - alarm_control_panel
-#     entity_config:
-#       alarm_control_panel.alarm:
-#         code: !secret alarm_code
-#     mode: accessory
-
 binary_sensor:
   - platform: mqtt
     name: "Door Sensor"
