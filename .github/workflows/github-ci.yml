@@ -28,8 +28,7 @@ jobs:
           sed -i -e "/^(start)$/{N;s/^(start)\n(end)$/(start)\n$config\n(end)/}" README.md
 
       # Commit and push the updated README.md file
-      - name: Commit and push
-        run: |
-          git add README.md
-          git commit -m "Update README.md with configuration.yaml"
-          git push
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.ACTION_KEY }}
