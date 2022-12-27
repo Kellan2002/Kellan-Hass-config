@@ -15,23 +15,19 @@ jobs:
       - name: "📥  Fetching Repository Contents"
         uses: actions/checkout@main
 
-    - name: Copy Configuration
-      run: |
-        # Print the current working directory
-        pwd
-        ls -la
-        # Extract the content between the triple backticks
-        content=$(awk '/^```$/,/^```$/' relative/path/to/README.md | grep -v '^```$')
-        # Append the content of configuration.yml to it
-        content="$content\n$(cat configuration.yml)"
-        # Replace the original content in README.md with the modified content
-        sed -i "s/^```$.*$```$/```\n$content\n```/" README.md
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: modified-readme
-        path: README.md
-
-
-
-
+      - name: Copy Configuration
+        run: |
+          # Print the current working directory
+          pwd
+          ls -la
+          # Extract the content between the triple backticks
+          content=$(awk '/^```$/,/^```$/' relative/path/to/README.md | grep -v '^```$')
+          # Append the content of configuration.yml to it
+          content="$content\n$(cat configuration.yml)"
+          # Replace the original content in README.md with the modified content
+          sed -i "s/^```$.*$```$/```\n$content\n```/" README.md
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: modified-readme
+          path: README.md
