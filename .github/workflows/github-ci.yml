@@ -1,32 +1,28 @@
-name: Dynamic README
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+on: [push]
 
 jobs:
-  update_readme:
-    name: "Update Templates"
+  update-readme:
     runs-on: ubuntu-latest
-
     steps:
-      - name: "📥  Fetching Repository Contents"
-        uses: actions/checkout@main
-      
-      - name: Copy Configuration
+      # Check if the push contains the configuration.yaml file
+      - name: Check for configuration.yaml
         run: |
-          cat configuration.yaml | sed '1i```' | sed '$a```' > temp.md
-          cat temp.md >> README.md
-          # Extract the content between the triple backticks
-          content=$(awk '/^```$/,/^```$/' README.md | grep -v '^```$')
-          # Append the content of configuration.yaml to it
-          content="$content\n$(cat configuration.yaml)"
-          # Replace the original content in README.md with the modified content
-          sed -i "s/^```$.*$```$/```\n$content\n```/" README.md
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: modified-readme
-          path: README.md
+          if git diff-tree --no-commit-id --name-only -r HEAD | grep -q "configuration.yaml"; then
+            exit 0
+          else
+            exit 1
+          fi
+      # Get the contents of the configuration.yaml file
+      - name: Get configuration.yaml
+        run: |
+          config=$(cat configuration.yaml)
+      # Insert the contents of the configuration.yaml file into the README.md file
+      - name: Update README.md
+        run: |
+          sed -i -e "/^```$/{N;s/^```\n```$/```\n$config\n```/}" README.md
+      # Commit and push the updated README.md file
+      - name: Commit and push
+        run: |
+          git add README.md
+          git commit -m "Update README.md with configuration.yaml"
+          git push
