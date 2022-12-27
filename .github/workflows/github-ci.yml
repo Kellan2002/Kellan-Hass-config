@@ -21,7 +21,7 @@ jobs:
           pwd
           ls -la
           # Extract the content between the triple backticks
-          content=$(awk '/^```$/,/^```$/' relative/path/to/README.md | grep -v '^```$')
+          content=$(awk '/^```$/,/^```$/' README.md | grep -v '^```$')
           # Append the content of configuration.yml to it
           content="$content\n$(cat configuration.yml)"
           # Replace the original content in README.md with the modified content
