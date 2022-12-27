@@ -78,31 +78,6 @@ light:
     payload_on: "ON"
     payload_off: "OFF"
 
-switch:
-  - platform: mqtt
-    name: "Conservatory Fan"
-    command_topic: "cmnd/C-Fan/power"
-    state_topic: "stat/C-Fan/POWER"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    retain: true
-
-    #
-# - platform: mqtt
-#    state_topic: 'tele/KBR-Lamp/SENSOR'
-#    name: 'Bedroom Humidity'
-#    unit_of_measurement: '%'
-#    value_template: '{{ value_json.AM2301.Humidity }}'
-
-yeelight:
-  devices:
-    192.168.185.143:
-      name: Light Strip
-      transition: 1000
-      use_music_mode: true
-      save_on_change: true
-
   custom_effects:
     - name: "Fire Flicker"
       flow_params:
