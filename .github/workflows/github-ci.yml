@@ -23,7 +23,7 @@ jobs:
       - name: Dynamic README ✨
         uses: varunsridharan/action-dynamic-readme@main
         with:
-          GLOBAL_TEMPLATE_REPOSITORY: {repository-owner}/{repository-name}
+          GLOBAL_TEMPLATE_REPOSITORY: KellanStevens/hassio-config
           files: |
             configuration.yaml
             FILE2.md=README.md
