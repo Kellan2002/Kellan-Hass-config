@@ -1,36 +1,14 @@
-name: Dynamic README
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
+name: copy files
+on: [push]
 jobs:
-  update_readme:
-    name: "Update Templates"
+
+  build:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
-      - name: "📥  Fetching Repository Contents"
-        uses: actions/checkout@main
-
-      - name: "💾  Github Repository Metadata"
-        uses: varunsridharan/action-repository-meta@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACTION_KEY }}
-
-      - name: Dynamic README ✨
-        uses: varunsridharan/action-dynamic-readme@main
-        with:
-          GLOBAL_TEMPLATE_REPOSITORY: KellanStevens/hassio-config
-          files: |
-            configuration.yaml
-            FILE2.md=README.md
-          delimiter:
-            ${{``` ```}}
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACTION_KEY }}
-
-
-
+    - uses: actions/checkout@master
+    - name: copy file
+      uses: canastro/copy-file-action@master
+      with:
+        source: "configuration.yaml"
+        target: "README.md"
