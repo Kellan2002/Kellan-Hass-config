@@ -18,11 +18,11 @@ jobs:
       - name: Copy Configuration
         run: |
 
-          cat configuration.yml
+          cat configuration.yaml
           # Extract the content between the triple backticks
           content=$(awk '/^```$/,/^```$/' README.md | grep -v '^```$')
-          # Append the content of configuration.yml to it
-          content="$content\n$(cat configuration.yml)"
+          # Append the content of configuration.yaml to it
+          content="$content\n$(cat configuration.yaml)"
           # Replace the original content in README.md with the modified content
           sed -i "s/^```$.*$```$/```\n$content\n```/" README.md
       - name: Upload Artifact
