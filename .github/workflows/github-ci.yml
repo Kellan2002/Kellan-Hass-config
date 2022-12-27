@@ -27,6 +27,8 @@ jobs:
           files: |
             configuration.yaml
             FILE2.md=README.md
+          delimiter:
+            ${{``` ```}}
         env:
           GITHUB_TOKEN: ${{ secrets.ACTION_KEY }}
 
