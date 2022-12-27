@@ -17,9 +17,7 @@ jobs:
 
       - name: Copy Configuration
         run: |
-          # Print the current working directory
-          pwd
-          ls -la
+
           # Extract the content between the triple backticks
           content=$(awk '/^```$/,/^```$/' README.md | grep -v '^```$')
           # Append the content of configuration.yml to it
